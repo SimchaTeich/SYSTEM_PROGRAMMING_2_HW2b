@@ -23,7 +23,7 @@ namespace ariel
          string _specialName;
 
     public:
-        Card(int value, const string& color);
+        Card(int value, const string& type);
 
         int getValue() const;
         void printCard() const;
