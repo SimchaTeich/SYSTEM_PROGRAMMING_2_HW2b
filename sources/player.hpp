@@ -31,6 +31,7 @@ namespace ariel
 
         // getters
         string name() const;
+        bool inPlay() const;
         int stacksize() const;
         int cardsWasWin() const;
         int cardsWasDraw() const;

@@ -54,6 +54,12 @@ string ariel::Player::name() const
 };
 
 
+bool ariel::Player::inPlay() const
+{
+    return this->_inPlay;
+}
+
+
 int ariel::Player::stacksize() const
 {
     return this->_cardsStack.size();
