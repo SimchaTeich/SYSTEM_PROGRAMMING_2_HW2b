@@ -11,7 +11,6 @@
 using std::string;
 
 
-
 namespace ariel
 {
     class Card
@@ -26,6 +25,7 @@ namespace ariel
         Card(int value, const string& type);
 
         int getValue() const;
+        string cardString() const;
         void printCard() const;
     };
 };

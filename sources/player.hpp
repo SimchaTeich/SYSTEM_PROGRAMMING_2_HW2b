@@ -24,6 +24,8 @@ namespace ariel
     public:
         Player(const string& name);
 
+        void startToPlay();
+        void endToPlay();
         void insertCard(const Card& card);
         Card playCard();
         void winTurn(int score);    // append score to _cardesTaken and add 1 to _cardsWasWin 

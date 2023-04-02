@@ -1,5 +1,5 @@
 #include "player.hpp"
-//#include <exception>
+#include <iostream>
 
 
 ariel::Player::Player(const string& name)
@@ -17,9 +17,20 @@ ariel::Player::Player(const string& name)
 };
 
 
-void ariel::Player::insertCard(const Card& card)
+void ariel::Player::startToPlay()
 {
     this->_inPlay = true;
+}
+
+
+void ariel::Player::endToPlay()
+{
+    this->_inPlay = false;
+}
+
+
+void ariel::Player::insertCard(const Card& card)
+{
     this->_cardsStack.push(card);
 };
 
@@ -28,7 +39,6 @@ ariel::Card ariel::Player::playCard()
 {
     ariel::Card curr = this->_cardsStack.top();
     this->_cardsStack.pop();
-    if(this->_cardsStack.empty()) { this->_inPlay = false; }
 
     return curr;
 };
@@ -43,7 +53,6 @@ void ariel::Player::winTurn(int score)
 
 void ariel::Player::drawTurn(int score)
 {
-    this->_cardesTaken += score;
     this->_cardsWasDraw++;
 };
 
