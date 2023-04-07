@@ -3,10 +3,12 @@
 
 #include <string>
 
-#define ACE_VAL 1
-#define PRINCE_VAL 11
-#define QUEEN_VAL 12
-#define KING_VAL 13
+constexpr int ACE_VAL = 1;
+constexpr int PRINCE_VAL = 11;
+constexpr int QUEEN_VAL = 12;
+constexpr int KING_VAL = 13;
+
+
 
 using std::string;
 

@@ -16,12 +16,6 @@ using std::endl;
 ariel::Game::Game(Player& player1, Player& player2)
     : _player1(player1), _player2(player2)
 {
-
-    if(player1.name() == player2.name())
-    {
-        throw "Error: can't create the Game. players are the same";
-    }
-
     if(player1.inPlay() || player2.inPlay())
     {
         throw "Error: one or more players are playing right now";
@@ -41,6 +35,11 @@ ariel::Game::Game(Player& player1, Player& player2)
 
 void ariel::Game::playTurn()
 {
+    if(_player1.name() == _player2.name())
+    {
+        throw "Error: players are equal or thier have the same name";
+    }
+
     if(_gameIsOver)
     {
         throw "Error: game is over, cant play any more";
@@ -132,6 +131,11 @@ void ariel::Game::playTurn()
 
 void ariel::Game::playAll()
 {
+    if(_player1.name() == _player2.name())
+    {
+        throw "Error: players are equal or thier have the same name";
+    }
+
     if(_gameIsOver)
     {
         throw "Error: game is over, cant play any more";
