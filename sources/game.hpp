@@ -21,7 +21,6 @@ namespace ariel
         int _turnNum;              // turns counter
         string _turnWinner;
         bool _gameIsOver;
-        int _winner;               // 0, 1 or 2.
         vector<string> _logOfTurns;
 
         void initCards();

@@ -24,7 +24,6 @@ Game::Game(Player& player1, Player& player2)
     this->_turnNum = 0;
     this->_gameIsOver = false;
     this->_turnWinner = "";
-    this->_winner = NO_ONE;
 
     // Make players to be in mode of game
     this->_player1.startToPlay();
@@ -94,7 +93,7 @@ void Game::playTurn()
         // update turn log
         turnLog += name1 + " played " + c1.cardString() + " " + name2 + " played " + c2.cardString() + ". " + _turnWinner + " ";
         if(_turnWinner != "Draw."){ turnLog += "wins. "; }
-
+        
     }while(_turnWinner == "Draw.");
 
 
