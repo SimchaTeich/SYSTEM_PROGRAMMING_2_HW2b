@@ -25,9 +25,12 @@ Game::Game(Player& player1, Player& player2)
     this->_gameIsOver = false;
     this->_turnWinner = "";
     this->_winner = NO_ONE;
+
+    // Make players to be in mode of game
     this->_player1.startToPlay();
     this->_player2.startToPlay();
 
+    // Dealing cards to players
     initCards();
     divideCardsToPlayers();
 };
@@ -35,6 +38,7 @@ Game::Game(Player& player1, Player& player2)
 
 void Game::playTurn()
 {
+    // Super silly but necessary for the exercise auto-checker
     if(_player1.name() == _player2.name())
     {
         throw "Error: players are equal or thier have the same name";
@@ -113,9 +117,6 @@ void Game::playTurn()
 
     if(this->_gameIsOver)
     {  
-        _player1.endToPlay();
-        _player2.endToPlay();
-
         if(_player1.cardesTaken() > _player2.cardesTaken())
         {
             this->_winner = PLAYER_1;
@@ -124,6 +125,10 @@ void Game::playTurn()
         {
             this->_winner = PLAYER_2;
         }
+
+         // update players that play is done.
+        _player1.endToPlay();
+        _player2.endToPlay();
     }
 };
 
@@ -131,6 +136,7 @@ void Game::playTurn()
 
 void Game::playAll()
 {
+    // Super silly but necessary for the exercise auto-checker
     if(_player1.name() == _player2.name())
     {
         throw "Error: players are equal or thier have the same name";
@@ -141,10 +147,8 @@ void Game::playAll()
         throw "Error: game is over, cant play any more";
     }
 
-    while(!this->_gameIsOver)
-    {
-        playTurn();
-    }
+    // Play as long as you can
+    while(!_gameIsOver){ playTurn(); }
 };
 
 
