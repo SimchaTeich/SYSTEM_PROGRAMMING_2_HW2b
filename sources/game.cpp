@@ -8,12 +8,12 @@
 #define PLAYER_1 1
 #define PLAYER_2 2
 
-using ariel::Card;
+using namespace ariel;
 using std::cout;
 using std::endl;
 
 
-ariel::Game::Game(Player& player1, Player& player2)
+Game::Game(Player& player1, Player& player2)
     : _player1(player1), _player2(player2)
 {
     if(player1.inPlay() || player2.inPlay())
@@ -33,7 +33,7 @@ ariel::Game::Game(Player& player1, Player& player2)
 };
 
 
-void ariel::Game::playTurn()
+void Game::playTurn()
 {
     if(_player1.name() == _player2.name())
     {
@@ -129,7 +129,7 @@ void ariel::Game::playTurn()
 
 
 
-void ariel::Game::playAll()
+void Game::playAll()
 {
     if(_player1.name() == _player2.name())
     {
@@ -148,7 +148,7 @@ void ariel::Game::playAll()
 };
 
 
-void ariel::Game::printLastTurn() const
+void Game::printLastTurn() const
 {
     if(this->_logOfTurns.empty())
     {
@@ -159,7 +159,7 @@ void ariel::Game::printLastTurn() const
 };
 
 
-void ariel::Game::printLog() const
+void Game::printLog() const
 {
     for(size_t i = 0; i < this->_logOfTurns.size(); i++)
     {
@@ -168,7 +168,7 @@ void ariel::Game::printLog() const
 };
 
 
-void ariel::Game::printWiner() const
+void Game::printWiner() const
 {
     if(_winner == PLAYER_1){cout << _player1.name() << endl;}
     else if(_winner == PLAYER_2){cout << _player2.name() << endl;}
@@ -176,11 +176,11 @@ void ariel::Game::printWiner() const
 };
 
 
-void ariel::Game::printStats() const{};
+void Game::printStats() const{};
 
 
 //  helpers
-void ariel::Game::initCards()
+void Game::initCards()
 {
     for(int i = 1; i <= 13; i++)
     {
@@ -196,7 +196,7 @@ void ariel::Game::initCards()
 //              and the second get the next card.
 //              to do this 26 times.
 // https://cplusplus.com/reference/algorithm/random_shuffle/
-void ariel::Game::divideCardsToPlayers()
+void Game::divideCardsToPlayers()
 {
     // shuffle the cards before divide
     std::srand(unsigned(std::time(0)));
