@@ -60,7 +60,7 @@ void Game::playTurn()
         _cardsStack.push_back(c2);
 
         turnWinner = checkTurnWinner(c1.getValue(), c2.getValue());
-        if(turnWinner == "Draw.")
+        if(turnWinner == "Draw")
         {   
             _player1.drawTurn(1);
             _player2.drawTurn(1);
@@ -73,18 +73,14 @@ void Game::playTurn()
             }
         }
 
-
         // update turn log
-        turnLog += _player1.name() + " played " + c1.cardString() + " ";
-        turnLog += _player2.name() + " played " + c2.cardString() + ". ";
-        turnLog += turnWinner + " ";
-        if(turnWinner != "Draw."){ turnLog += "wins. "; }
+        updateTurnLog(turnLog, c1.cardString(), c2.cardString(), turnWinner);
 
         // break the game if no more cards at players.
         // this line can be just after some draw.
         if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
         
-    }while(turnWinner == "Draw.");
+    }while(turnWinner == "Draw");
 
     // give points for winner of the turn
     givePointsForCurrWinner(turnWinner);
@@ -213,8 +209,23 @@ string Game::checkTurnWinner(const int& value1, const int& value2) const
     else if(value1 < value2){ return _player2.name(); }
     else
     {
-        return "Draw.";
+        return "Draw";
     }
+}
+
+
+void Game::updateTurnLog(string& turnLog, const string& cardStr1, const string& cardStr2, const string& turnWinner) const
+{
+    if(turnLog != ""){ turnLog += " "; }
+
+    turnLog += _player1.name() + " played " + cardStr1 + " ";
+    turnLog += _player2.name() + " played " + cardStr2 + ". ";
+    turnLog += turnWinner;
+    if(turnWinner != "Draw")
+    {
+        turnLog += " wins";
+    }
+    turnLog += ".";
 }
 
 
@@ -228,7 +239,7 @@ void Game::givePointsForCurrWinner(const string& currWinner)
     {
         _player2.winTurn(_cardsStack.size());
     }
-    else //currWinner == "Draw."
+    else //currWinner == "Draw"
     {
         _player1.winTurn(_cardsStack.size()/2);
         _player2.winTurn(_cardsStack.size()/2);
