@@ -165,6 +165,11 @@ void Game::printLastTurn() const
 
 void Game::printLog() const
 {
+    if(this->_logOfTurns.empty())
+    {
+        throw "Error: no turn was yet.. so no logs for now";
+    }
+
     for(size_t i = 0; i < this->_logOfTurns.size(); i++)
     {
         cout << this->_logOfTurns[i] << endl;
