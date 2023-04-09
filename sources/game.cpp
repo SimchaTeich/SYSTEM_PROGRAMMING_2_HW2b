@@ -87,7 +87,9 @@ void Game::playTurn()
         }
 
         // update turn log
-        turnLog += name1 + " played " + c1.cardString() + " " + name2 + " played " + c2.cardString() + ". " + _turnWinner + " ";
+        turnLog += name1 + " played " + c1.cardString() + " ";
+        turnLog += name2 + " played " + c2.cardString() + ". ";
+        turnLog += _turnWinner + " ";
         if(_turnWinner != "Draw."){ turnLog += "wins. "; }
 
         // break the game if no more cards at players.
@@ -101,7 +103,9 @@ void Game::playTurn()
     
     // clear the oldest and unusefull-any-more cards.
     _cardsStack.clear();
-    if(turnLog != ""){ _logOfTurns.push_back(turnLog); }
+
+    // write the log
+    _logOfTurns.push_back(turnLog);
 
     if(_gameIsOver)
     {  
