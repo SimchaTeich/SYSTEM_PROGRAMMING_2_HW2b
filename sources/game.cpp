@@ -121,25 +121,25 @@ void Game::playAll()
 
 void Game::printLastTurn() const
 {
-    if(this->_logOfTurns.empty())
+    if(_logOfTurns.empty())
     {
         throw "Error: no turn was yet.. so no logs for now";
     }
 
-    cout << this->_logOfTurns.back() << endl;
+    cout << _logOfTurns.back() << endl;
 };
 
 
 void Game::printLog() const
 {
-    if(this->_logOfTurns.empty())
+    if(_logOfTurns.empty())
     {
         throw "Error: no turn was yet.. so no logs for now";
     }
 
-    for(size_t i = 0; i < this->_logOfTurns.size(); i++)
+    for(size_t i = 0; i < _logOfTurns.size(); i++)
     {
-        cout << this->_logOfTurns[i] << endl;
+        cout << _logOfTurns[i] << endl;
     }
 };
 
@@ -176,10 +176,10 @@ void Game::initCards()
 {
     for(int i = 1; i <= 13; i++)
     {
-        this->_cardsStack.push_back(Card(i, "Spades"));
-        this->_cardsStack.push_back(Card(i, "Clubs"));
-        this->_cardsStack.push_back(Card(i, "Hearts"));
-        this->_cardsStack.push_back(Card(i, "Diamonds"));
+        _cardsStack.push_back(Card(i, "Spades"));
+        _cardsStack.push_back(Card(i, "Clubs"));
+        _cardsStack.push_back(Card(i, "Hearts"));
+        _cardsStack.push_back(Card(i, "Diamonds"));
     }
 };
 
@@ -189,14 +189,14 @@ void Game::divideCardsToPlayers()
 {
     // shuffle the cards before divide
     std::srand(unsigned(std::time(0)));
-    std::random_shuffle(this->_cardsStack.begin(), this->_cardsStack.end());
+    std::random_shuffle(_cardsStack.begin(), _cardsStack.end());
 
-    while(!this->_cardsStack.empty())
+    while(!_cardsStack.empty())
     {
-        this->_player1.insertCard(this->_cardsStack.back());
-        this->_cardsStack.pop_back();
-        this->_player2.insertCard(this->_cardsStack.back());
-        this->_cardsStack.pop_back();
+        _player1.insertCard(_cardsStack.back());
+        _cardsStack.pop_back();
+        _player2.insertCard(_cardsStack.back());
+        _cardsStack.pop_back();
     }
 };
 
