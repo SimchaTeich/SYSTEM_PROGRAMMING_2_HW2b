@@ -4,10 +4,6 @@
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
 
-#define NO_ONE 0
-#define PLAYER_1 1
-#define PLAYER_2 2
-
 using namespace ariel;
 using std::cout;
 using std::endl;
