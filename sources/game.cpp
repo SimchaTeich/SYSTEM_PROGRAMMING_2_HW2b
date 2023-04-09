@@ -23,7 +23,6 @@ Game::Game(Player& player1, Player& player2)
 
     this->_turnNum = 0;
     this->_gameIsOver = false;
-    this->_turnWinner = "";
 
     // Make players to be in mode of game
     this->_player1.startToPlay();
@@ -50,23 +49,18 @@ void Game::playTurn()
 
     _turnNum++;
 
-    string name1 = _player1.name();
-    string name2 = _player2.name();
+    string turnWinner = "";
     string turnLog = "";
-    int value1 = 0;
-    int value2 = 0;
 
     do
     {
         Card c1 = _player1.playCard();
         Card c2 = _player2.playCard();
-        value1 = c1.getValue();
-        value2 = c2.getValue();
         _cardsStack.push_back(c1);
         _cardsStack.push_back(c2);
 
-        _turnWinner = checkTurnWinner(value1, value2);
-        if(_turnWinner == "Draw.")
+        turnWinner = checkTurnWinner(c1.getValue(), c2.getValue());
+        if(turnWinner == "Draw.")
         {   
             _player1.drawTurn(1);
             _player2.drawTurn(1);
@@ -81,19 +75,19 @@ void Game::playTurn()
 
 
         // update turn log
-        turnLog += name1 + " played " + c1.cardString() + " ";
-        turnLog += name2 + " played " + c2.cardString() + ". ";
-        turnLog += _turnWinner + " ";
-        if(_turnWinner != "Draw."){ turnLog += "wins. "; }
+        turnLog += _player1.name() + " played " + c1.cardString() + " ";
+        turnLog += _player2.name() + " played " + c2.cardString() + ". ";
+        turnLog += turnWinner + " ";
+        if(turnWinner != "Draw."){ turnLog += "wins. "; }
 
         // break the game if no more cards at players.
         // this line can be just after some draw.
         if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
         
-    }while(_turnWinner == "Draw.");
+    }while(turnWinner == "Draw.");
 
     // give points for winner of the turn
-    givePointsForCurrWinner();
+    givePointsForCurrWinner(turnWinner);
     
     // clear the oldest and unusefull-any-more cards.
     _cardsStack.clear();
@@ -224,17 +218,17 @@ string Game::checkTurnWinner(const int& value1, const int& value2) const
 }
 
 
-void Game::givePointsForCurrWinner()
+void Game::givePointsForCurrWinner(const string& currWinner)
 {
-    if(_turnWinner == _player1.name())
+    if(currWinner == _player1.name())
     {
         _player1.winTurn(_cardsStack.size());
     }
-    else if(_turnWinner == _player2.name())
+    else if(currWinner == _player2.name())
     {
         _player2.winTurn(_cardsStack.size());
     }
-    else //_turnWinner == "Draw."
+    else //currWinner == "Draw."
     {
         _player1.winTurn(_cardsStack.size()/2);
         _player2.winTurn(_cardsStack.size()/2);

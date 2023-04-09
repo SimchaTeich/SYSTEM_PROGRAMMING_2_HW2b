@@ -19,14 +19,13 @@ namespace ariel
         Player& _player2;
         vector<Card> _cardsStack;
         int _turnNum;              // turns counter
-        string _turnWinner;
         bool _gameIsOver;
         vector<string> _logOfTurns;
 
         void initCards();
         void divideCardsToPlayers();
         string checkTurnWinner(const int& value1, const int& value2) const;
-        void givePointsForCurrWinner(); // based on _turnWinner
+        void givePointsForCurrWinner(const string& currWinner);
 
     public:
         Game(Player& player1, Player& player2);
