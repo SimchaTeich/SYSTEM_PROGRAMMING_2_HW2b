@@ -119,16 +119,7 @@ void Game::playTurn()
 
     if(this->_gameIsOver)
     {  
-        if(_player1.cardesTaken() > _player2.cardesTaken())
-        {
-            this->_winner = PLAYER_1;
-        }
-        else if(_player1.cardesTaken() < _player2.cardesTaken())
-        {
-            this->_winner = PLAYER_2;
-        }
-
-         // update players that play is done.
+        // update players that play is done.
         _player1.endToPlay();
         _player2.endToPlay();
     }
