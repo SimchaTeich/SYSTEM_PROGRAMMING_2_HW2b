@@ -49,51 +49,53 @@ void Game::playTurn()
         throw "Error: game is over, cant play any more";
     }
 
-    this->_turnNum++;
+    _turnNum++;
 
-    string name1 = this->_player1.name();
-    string name2 = this->_player2.name();
+    string name1 = _player1.name();
+    string name2 = _player2.name();
     string turnLog = "";
+    int value1 = 0;
+    int value2 = 0;
 
     do
     {
         // break the game if no more cards at players.
-        if(this->_player1.stacksize() == 0){ this->_gameIsOver=true; break;}
+        if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
 
 
-        Card c1 = this->_player1.playCard();
-        Card c2 = this->_player2.playCard();
-        this->_cardsStack.push_back(c1);
-        this->_cardsStack.push_back(c2);
-        int value1 = c1.getValue();
-        int value2 = c2.getValue();
+        Card c1 = _player1.playCard();
+        Card c2 = _player2.playCard();
+        value1 = c1.getValue();
+        value2 = c2.getValue();
+        _cardsStack.push_back(c1);
+        _cardsStack.push_back(c2);
 
-        this->_turnWinner = "";
+        _turnWinner = "";
 
         // check the curr state of turn
-        if(value1 == 1 && value2 == 2) { this->_turnWinner = name1; }
-        else if(value1 == 2 && value2 == 1){ this->_turnWinner = name2; }
-        else if(value1 > value2){ this->_turnWinner = name1; }
-        else if(value1 < value2){ this->_turnWinner = name2; }
+        if(value1 == ACE_VAL && value2 == 2) { _turnWinner = name1; }
+        else if(value1 == 2 && value2 == ACE_VAL){ _turnWinner = name2; }
+        else if(value1 > value2){ _turnWinner = name1; }
+        else if(value1 < value2){ _turnWinner = name2; }
         else
         {
-            this->_turnWinner = "Draw.";
-            this->_player1.drawTurn(1);
-            this->_player2.drawTurn(1);
+            _turnWinner = "Draw.";
+            _player1.drawTurn(1);
+            _player2.drawTurn(1);
 
-            if(this->_player1.stacksize() != 0)
+            if(_player1.stacksize() != 0)
             {
                 // hidden cards.
-                this->_cardsStack.push_back(this->_player1.playCard());
-                this->_cardsStack.push_back(this->_player2.playCard());
+                _cardsStack.push_back(_player1.playCard());
+                _cardsStack.push_back(_player2.playCard());
             }
         }
 
         // update turn log
-        turnLog += name1 + " played " + c1.cardString() + " " + name2 + " played " + c2.cardString() + ". " + this->_turnWinner + " ";
-        if(this->_turnWinner != "Draw."){ turnLog += "wins. "; }
+        turnLog += name1 + " played " + c1.cardString() + " " + name2 + " played " + c2.cardString() + ". " + _turnWinner + " ";
+        if(_turnWinner != "Draw."){ turnLog += "wins. "; }
 
-    }while(this->_turnWinner == "Draw.");
+    }while(_turnWinner == "Draw.");
 
 
     // break the game if no more cards at players.
