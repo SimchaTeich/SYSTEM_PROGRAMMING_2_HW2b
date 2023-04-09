@@ -25,6 +25,7 @@ namespace ariel
 
         void initCards();
         void divideCardsToPlayers();
+        void givePointsForCurrWinner(); // based on _turnWinner
 
     public:
         Game(Player& player1, Player& player2);

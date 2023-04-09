@@ -96,21 +96,8 @@ void Game::playTurn()
         
     }while(_turnWinner == "Draw.");
 
-
-    // break the game if no more cards at players.
-    if(_turnWinner == "Draw.")
-    {
-        _player1.winTurn(_cardsStack.size()/2);
-        _player2.winTurn(_cardsStack.size()/2);
-    }
-    else if(_turnWinner == name1)
-    {
-        _player1.winTurn(_cardsStack.size());
-    }
-    else if(_turnWinner == name2)
-    {
-        _player2.winTurn(_cardsStack.size());
-    }
+    // give points for winner of the turn
+    givePointsForCurrWinner();
     
     // clear the oldest and unusefull-any-more cards.
     _cardsStack.clear();
@@ -222,5 +209,23 @@ void Game::divideCardsToPlayers()
         this->_cardsStack.pop_back();
         this->_player2.insertCard(this->_cardsStack.back());
         this->_cardsStack.pop_back();
+    }
+};
+
+
+void Game::givePointsForCurrWinner()
+{
+    if(_turnWinner == _player1.name())
+    {
+        _player1.winTurn(_cardsStack.size());
+    }
+    else if(_turnWinner == _player2.name())
+    {
+        _player2.winTurn(_cardsStack.size());
+    }
+    else //_turnWinner == "Draw."
+    {
+        _player1.winTurn(_cardsStack.size()/2);
+        _player2.winTurn(_cardsStack.size()/2);
     }
 };
