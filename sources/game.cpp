@@ -181,9 +181,25 @@ void Game::printLog() const
 
 void Game::printWiner() const
 {
-    if(_winner == PLAYER_1){cout << _player1.name() << endl;}
-    else if(_winner == PLAYER_2){cout << _player2.name() << endl;}
-    else{cout << "Draw. every player have " << _player1.cardesTaken() << " points." << endl;}
+    if(_gameIsOver)
+    {
+        if(_player1.cardesTaken() > _player2.cardesTaken())
+        {
+            cout << _player1.name() << endl;
+        }
+        else if(_player1.cardesTaken() < _player2.cardesTaken())
+        {
+            cout << _player2.name() << endl;
+        }
+        else
+        {
+            cout << "Draw. every player have " << _player1.cardesTaken() << " points." << endl;
+        }
+    }
+    else
+    {
+        cout << "No winner yet, game is not over.." << endl;
+    }
 };
 
 
