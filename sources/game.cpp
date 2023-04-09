@@ -203,9 +203,6 @@ void Game::initCards()
 };
 
 
-// randomality: random one player for each card,
-//              and the second get the next card.
-//              to do this 26 times.
 // https://cplusplus.com/reference/algorithm/random_shuffle/
 void Game::divideCardsToPlayers()
 {
