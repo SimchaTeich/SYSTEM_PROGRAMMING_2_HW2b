@@ -65,16 +65,9 @@ void Game::playTurn()
         _cardsStack.push_back(c1);
         _cardsStack.push_back(c2);
 
-        _turnWinner = "";
-
-        // check the curr state of turn
-        if(value1 == ACE_VAL && value2 == 2) { _turnWinner = name1; }
-        else if(value1 == 2 && value2 == ACE_VAL){ _turnWinner = name2; }
-        else if(value1 > value2){ _turnWinner = name1; }
-        else if(value1 < value2){ _turnWinner = name2; }
-        else
-        {
-            _turnWinner = "Draw.";
+        _turnWinner = checkTurnWinner(value1, value2);
+        if(_turnWinner == "Draw.")
+        {   
             _player1.drawTurn(1);
             _player2.drawTurn(1);
 
@@ -85,6 +78,7 @@ void Game::playTurn()
                 _cardsStack.push_back(_player2.playCard());
             }
         }
+
 
         // update turn log
         turnLog += name1 + " played " + c1.cardString() + " ";
@@ -215,6 +209,19 @@ void Game::divideCardsToPlayers()
         this->_cardsStack.pop_back();
     }
 };
+
+
+string Game::checkTurnWinner(const int& value1, const int& value2) const
+{
+    if(value1 == ACE_VAL && value2 == 2) { return _player1.name(); }
+    else if(value1 == 2 && value2 == ACE_VAL){ return _player2.name(); }
+    else if(value1 > value2){ return _player1.name(); }
+    else if(value1 < value2){ return _player2.name(); }
+    else
+    {
+        return "Draw.";
+    }
+}
 
 
 void Game::givePointsForCurrWinner()

@@ -25,6 +25,7 @@ namespace ariel
 
         void initCards();
         void divideCardsToPlayers();
+        string checkTurnWinner(const int& value1, const int& value2) const;
         void givePointsForCurrWinner(); // based on _turnWinner
 
     public:
