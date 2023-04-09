@@ -4,6 +4,8 @@
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
 
+#define DRAW "Draw"
+
 using namespace ariel;
 using std::cout;
 using std::endl;
@@ -58,7 +60,7 @@ void Game::playTurn()
 
         // check witch card is the 'turn winner'
         turnWinner = checkTurnWinner(c1.getValue(), c2.getValue());
-        if(turnWinner == "Draw")
+        if(turnWinner == DRAW)
         {   
             _player1.drawTurn(1);
             _player2.drawTurn(1);
@@ -78,7 +80,7 @@ void Game::playTurn()
         // this line can be just after some draw.
         if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
         
-    }while(turnWinner == "Draw");
+    }while(turnWinner == DRAW);
 
     // give points for winner of the turn
     givePointsForCurrWinner(turnWinner);
@@ -207,7 +209,7 @@ string Game::checkTurnWinner(const int& value1, const int& value2) const
     else if(value1 < value2){ return _player2.name(); }
     else
     {
-        return "Draw";
+        return DRAW;
     }
 }
 
@@ -219,7 +221,7 @@ void Game::updateTurnLog(string& turnLog, const string& cardStr1, const string& 
     turnLog += _player1.name() + " played " + cardStr1 + " ";
     turnLog += _player2.name() + " played " + cardStr2 + ". ";
     turnLog += turnWinner;
-    if(turnWinner != "Draw")
+    if(turnWinner != DRAW)
     {
         turnLog += " wins";
     }
@@ -237,7 +239,7 @@ void Game::givePointsForCurrWinner(const string& currWinner)
     {
         _player2.winTurn(_cardsStack.size());
     }
-    else //currWinner == "Draw"
+    else //currWinner == DRAW
     {
         _player1.winTurn(_cardsStack.size()/2);
         _player2.winTurn(_cardsStack.size()/2);
