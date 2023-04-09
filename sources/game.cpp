@@ -58,11 +58,6 @@ void Game::playTurn()
 
     do
     {
-        // break the game if no more cards at players.
-        // this line can be just after some draw.
-        if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
-
-
         Card c1 = _player1.playCard();
         Card c2 = _player2.playCard();
         value1 = c1.getValue();
@@ -94,6 +89,10 @@ void Game::playTurn()
         // update turn log
         turnLog += name1 + " played " + c1.cardString() + " " + name2 + " played " + c2.cardString() + ". " + _turnWinner + " ";
         if(_turnWinner != "Draw."){ turnLog += "wins. "; }
+
+        // break the game if no more cards at players.
+        // this line can be just after some draw.
+        if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
         
     }while(_turnWinner == "Draw.");
 
