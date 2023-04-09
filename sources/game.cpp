@@ -59,6 +59,7 @@ void Game::playTurn()
     do
     {
         // break the game if no more cards at players.
+        // this line can be just after some draw.
         if(_player1.stacksize() == 0){ _gameIsOver = true; break;}
 
 
@@ -98,25 +99,25 @@ void Game::playTurn()
 
 
     // break the game if no more cards at players.
-    if(this->_turnWinner == "Draw.")
+    if(_turnWinner == "Draw.")
     {
-        this->_player1.winTurn(this->_cardsStack.size()/2);
-        this->_player2.winTurn(this->_cardsStack.size()/2);
+        _player1.winTurn(_cardsStack.size()/2);
+        _player2.winTurn(_cardsStack.size()/2);
     }
-    else if(this->_turnWinner == name1)
+    else if(_turnWinner == name1)
     {
-        this->_player1.winTurn(this->_cardsStack.size());
+        _player1.winTurn(_cardsStack.size());
     }
-    else if(this->_turnWinner == name2)
+    else if(_turnWinner == name2)
     {
-         this->_player2.winTurn(this->_cardsStack.size());
+        _player2.winTurn(_cardsStack.size());
     }
     
     // clear the oldest and unusefull-any-more cards.
-    this->_cardsStack.clear();
-    if(turnLog != ""){ this->_logOfTurns.push_back(turnLog); }
+    _cardsStack.clear();
+    if(turnLog != ""){ _logOfTurns.push_back(turnLog); }
 
-    if(this->_gameIsOver)
+    if(_gameIsOver)
     {  
         // update players that play is done.
         _player1.endToPlay();
