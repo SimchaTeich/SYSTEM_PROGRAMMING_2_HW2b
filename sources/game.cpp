@@ -32,7 +32,7 @@ Game::Game(Player& player1, Player& player2)
 
 void Game::playTurn()
 {
-    // Super silly but necessary for the exercise auto-checker
+    // Super silly (here) but necessary for the exercise auto-checker
     if(_player1.name() == _player2.name())
     {
         throw "Error: players are equal or thier have the same name";
@@ -50,11 +50,13 @@ void Game::playTurn()
 
     do
     {
+        // take one card from each player
         Card c1 = _player1.playCard();
         Card c2 = _player2.playCard();
         _cardsStack.push_back(c1);
         _cardsStack.push_back(c2);
 
+        // check witch card is the 'turn winner'
         turnWinner = checkTurnWinner(c1.getValue(), c2.getValue());
         if(turnWinner == "Draw")
         {   
@@ -99,7 +101,7 @@ void Game::playTurn()
 
 void Game::playAll()
 {
-    // Super silly but necessary for the exercise auto-checker
+    // Super silly (here) but necessary for the exercise auto-checker
     if(_player1.name() == _player2.name())
     {
         throw "Error: players are equal or thier have the same name";
