@@ -16,7 +16,7 @@ namespace ariel
     private:
         string _name;
         bool _inPlay;
-        stack<Card> _cardsStack;     // act like queue but call "stack"..
+        stack<Card> _cardsStack;
         int _cardsWasWin;
         int _cardsWasDraw;
         int _cardesTaken;            // score
