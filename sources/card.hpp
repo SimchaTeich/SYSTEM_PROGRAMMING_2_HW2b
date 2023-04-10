@@ -3,14 +3,12 @@
 
 #include <string>
 
+using std::string;
+
 constexpr int ACE_VAL = 1;
 constexpr int PRINCE_VAL = 11;
 constexpr int QUEEN_VAL = 12;
 constexpr int KING_VAL = 13;
-
-
-
-using std::string;
 
 
 namespace ariel
