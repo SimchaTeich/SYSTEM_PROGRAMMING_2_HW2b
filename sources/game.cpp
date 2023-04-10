@@ -20,6 +20,7 @@ Game::Game(Player& player1, Player& player2)
     }
 
     this->_turnNum = 0;
+    this->_numOfDraws = 0;
     this->_gameIsOver = false;
 
     // Make players to be in mode of game
@@ -62,8 +63,7 @@ void Game::playTurn()
         turnWinner = checkTurnWinner(c1.getValue(), c2.getValue());
         if(turnWinner == DRAW)
         {   
-            _player1.drawTurn(1);
-            _player2.drawTurn(1);
+            _numOfDraws++;
 
             if(_player1.stacksize() != 0)
             {

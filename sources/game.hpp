@@ -19,6 +19,7 @@ namespace ariel
         Player& _player2;
         vector<Card> _cardsStack;
         int _turnNum;              // turns counter
+        int _numOfDraws;
         bool _gameIsOver;
         vector<string> _logOfTurns;
 
