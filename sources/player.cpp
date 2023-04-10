@@ -12,7 +12,6 @@ ariel::Player::Player(const string& name)
     this->_name = name;
     this->_inPlay = false;
     this->_cardsWasWin = 0;
-    this->_cardsWasDraw = 0;
     this->_cardesTaken = 0;
 };
 
@@ -51,12 +50,6 @@ void ariel::Player::winTurn(int score)
 };
 
 
-void ariel::Player::drawTurn(int score)
-{
-    this->_cardsWasDraw++;
-};
-
-
 string ariel::Player::name() const
 {
     return this->_name;
@@ -78,12 +71,6 @@ int ariel::Player::stacksize() const
 int ariel::Player::cardsWasWin() const
 {
     return this->_cardsWasWin;
-};
-
-
-int ariel::Player::cardsWasDraw() const
-{
-    return this->_cardsWasDraw;
 };
 
 
