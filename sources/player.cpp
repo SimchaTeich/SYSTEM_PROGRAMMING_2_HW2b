@@ -1,8 +1,9 @@
 #include "player.hpp"
 #include <iostream>
 
+using namespace ariel;
 
-ariel::Player::Player(const string& name)
+Player::Player(const string& name)
 {
     if(name == "")
     {
@@ -16,65 +17,65 @@ ariel::Player::Player(const string& name)
 };
 
 
-void ariel::Player::startToPlay()
+void Player::startToPlay()
 {
     this->_inPlay = true;
 }
 
 
-void ariel::Player::endToPlay()
+void Player::endToPlay()
 {
     this->_inPlay = false;
 }
 
 
-void ariel::Player::insertCard(const Card& card)
+void Player::insertCard(const Card& card)
 {
     this->_cardsStack.push(card);
 };
 
 
-ariel::Card ariel::Player::playCard()
+Card Player::playCard()
 {
-    ariel::Card curr = this->_cardsStack.top();
+    Card curr = this->_cardsStack.top();
     this->_cardsStack.pop();
 
     return curr;
 };
 
 
-void ariel::Player::winTurn(int score)
+void Player::winTurn(int score)
 {
     this->_cardesTaken += score;
     this->_cardsWasWin++;
 };
 
 
-string ariel::Player::name() const
+string Player::name() const
 {
     return this->_name;
 };
 
 
-bool ariel::Player::inPlay() const
+bool Player::inPlay() const
 {
     return this->_inPlay;
 }
 
 
-int ariel::Player::stacksize() const
+int Player::stacksize() const
 {
     return this->_cardsStack.size();
 };
 
 
-int ariel::Player::cardsWasWin() const
+int Player::cardsWasWin() const
 {
     return this->_cardsWasWin;
 };
 
 
-int ariel::Player::cardesTaken() const
+int Player::cardesTaken() const
 {
     return this->_cardesTaken;
 }
