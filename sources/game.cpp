@@ -41,10 +41,7 @@ void Game::playTurn()
         throw "Error: players are equal or thier have the same name";
     }
 
-    if(_gameIsOver)
-    {
-        throw "Error: game is over, cant play any more";
-    }
+    if(_gameIsOver) { throw "Error: game is over, cant play any more"; }
 
     _turnNum++;
 
@@ -109,10 +106,7 @@ void Game::playAll()
         throw "Error: players are equal or thier have the same name";
     }
 
-    if(_gameIsOver)
-    {
-        throw "Error: game is over, cant play any more";
-    }
+    if(_gameIsOver) { throw "Error: game is over, cant play any more"; }
 
     // Play as long as you can
     while(!_gameIsOver){ playTurn(); }
