@@ -195,7 +195,6 @@ void Game::printStats() const
 };
 
 
-//  helpers
 void Game::initCards()
 {
     for(int i = 1; i <= 13; i++)
