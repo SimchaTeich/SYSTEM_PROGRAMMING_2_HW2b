@@ -162,7 +162,37 @@ void Game::printWiner() const
 };
 
 
-void Game::printStats() const{};
+void Game::printStats() const
+{
+    // if game is over but players are play in other game,
+    // the cardesTaken() will not correct... 
+    if(_gameIsOver && (_player1.inPlay() || _player2.inPlay()) )
+    {
+        throw "Error: players may not updates for current play";
+    }
+
+    // stats for game:
+    cout << "----------------------------------------"<< endl;
+    cout << "Game Stats" << endl;
+    cout << "Turns: " << _turnNum << " | ";
+    cout << "Draws: " << _numOfDraws << " | ";
+    cout << "Draw rate: " << ((double)_numOfDraws / _turnNum) * 100 << "%" << endl;
+    cout << "Winner: ";
+    printWiner();
+    cout << endl;
+    // stats for _player1
+    cout << _player1.name() << " Stats:" << endl;
+    cout << "   Cards taken: " << _player1.cardesTaken() << endl;
+    cout << "   Cards win: " << _player1.cardsWasWin() << endl;
+    cout << "   Win rate: " << ((double)_player1.cardsWasWin() / (_player1.cardsWasWin() + _player2.cardsWasWin())) * 100 << "%" << endl;
+    cout << endl;
+    // stats for_player2
+    cout << _player2.name() << " Stats:" << endl;
+    cout << "   Cards taken: " << _player2.cardesTaken() << endl;
+    cout << "   Cards win: " << _player2.cardsWasWin() << endl;
+    cout << "   Win rate: " << ((double)_player2.cardsWasWin() / (_player1.cardsWasWin() + _player2.cardsWasWin())) * 100 << "%" << endl;
+    cout << "----------------------------------------"<< endl;
+};
 
 
 //  helpers
