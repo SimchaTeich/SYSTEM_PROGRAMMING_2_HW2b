@@ -1,11 +1,12 @@
 #include "card.hpp"
 #include <iostream>
 
+using namespace ariel;
 using std::cout;
 using std::endl;
 
 
-ariel::Card::Card(int value, const string& type)
+Card::Card(int value, const string& type)
 {
     this->_value = value;
     this->_type = type;
@@ -22,13 +23,13 @@ ariel::Card::Card(int value, const string& type)
 };
 
 
-int ariel::Card::getValue() const
+int Card::getValue() const
 {
     return this->_value;
 };
 
 
-string ariel::Card::cardString() const
+string Card::cardString() const
 {
     string ret = (this->_specialName != "" ? this->_specialName : std::to_string(this->_value));
     ret += (" of " + this->_type);
@@ -36,7 +37,7 @@ string ariel::Card::cardString() const
 };
 
 
-void ariel::Card::printCard() const
+void Card::printCard() const
 {
     cout << cardString() << endl;
 };
