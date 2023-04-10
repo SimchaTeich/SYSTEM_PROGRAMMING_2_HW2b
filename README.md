@@ -1,6 +1,6 @@
 Welcome to the War Card Game!
 
-Source: https://github.com/cpp-exercises/CardWar_a
+Source: https://github.com/cpp-exercises/CardWar_B
 
 
           _____                      
